@@ -1,6 +1,5 @@
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import AppSidebar from "../_components/app-sidebar";
-import AppProvider from "../app-provider";
+import { Navbar } from "@/components/shared/navbar";
+import { Footer } from "@/components/shared/footer";
 
 export default function HomeLayout({
   children,
@@ -8,11 +7,10 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AppProvider>
-      <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset className="md:p-5">{children}</SidebarInset>
-      </SidebarProvider>
-    </AppProvider>
+    <div className="flex min-h-svh flex-col">
+      <Navbar />
+      <main className="mx-auto flex w-full max-w-360 flex-1 flex-col">{children}</main>
+      <Footer />
+    </div>
   );
 }

@@ -13,14 +13,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-
-type IconSvgElement = React.ComponentProps<typeof HugeiconsIcon>["icon"];
+import type { LucideIcon } from "lucide-react";
 
 export type SelectFieldOption = {
   value: string;
   label: string;
-  icon?: IconSvgElement;
+  icon?: LucideIcon;
   disabled?: boolean;
 };
 
@@ -67,7 +65,7 @@ const SelectField = ({
                 disabled={option.disabled}
               >
                 {option.icon && (
-                  <HugeiconsIcon icon={option.icon} strokeWidth={2} />
+                  <option.icon />
                 )}
                 {option.label}
               </SelectItem>

@@ -1,17 +1,31 @@
-﻿import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import type { Metadata } from "next";
+import { Geist_Mono, Vazirmatn } from "next/font/google";
 import { cn } from "@/lib/utils";
+import AppProvider from "./app-provider";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic", "latin"],
+  variable: "--font-sans",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
-  title: "Software Developer | Software developer",
+  title: {
+    default: "Arash | Software Engineer",
+    template: "%s | proarash",
+  },
   description:
-    "Design and development of various websites and web applications using modern and up-to-date frameworks.",
+    "Design and development of various websites and web applications using Next.js, NestJS, TypeScript, and Golang.",
   keywords: [
     "Next.js developer",
     "NestJS backend",
+    "Golang developer",
+    "Go backend engineer",
     "TypeScript fullstack developer",
     "React frontend engineer",
     "Node.js expert",
@@ -24,29 +38,32 @@ export const metadata: Metadata = {
     "Software engineer freelance",
     "SEO friendly web design",
   ],
-  authors: [{ name: "Software Developer", url: "https://example.com" }],
-  creator: "Software Developer",
-  publisher: "Software Developer",
-  metadataBase: new URL("https://example.com"),
+  authors: [{ name: "Arash", url: "https://proarash.github.io" }],
+  creator: "Arash",
+  publisher: "Arash",
+  metadataBase: new URL("https://proarash.github.io"),
   alternates: {
-    canonical: "https://example.com",
+    canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://example.com",
-    title: "Software Developer | Software developer",
+    url: "https://proarash.github.io",
+    title: {
+      default: "Arash | Software Engineer",
+      template: "%s | proarash",
+    },
     description:
-      "Fullstack developer specializing in Next.js, NestJS, and TypeScript. Design and development of modern websites and applications.",
-    siteName: "Software Developer Portfolio",
+      "Software engineer specializing in Next.js, NestJS, TypeScript, and Golang. Design and development of modern websites and applications.",
+    siteName: "proarash",
     images: [
       {
-        url: "https://example.com/me.png",
+        url: "/me.png",
         width: 600,
         height: 600,
-        alt: "Software Developer Portfolio Preview",
+        alt: "Arash | Software Engineer",
       },
     ],
-    locale: "en_US",
+    locale: "fa_IR",
   },
   robots: {
     index: true,
@@ -95,12 +112,14 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      dir="ltr"
-      className={cn("font-sans", geist.variable)}
+      lang="fa"
+      dir="rtl"
+      className={cn("font-sans", vazirmatn.variable, geistMono.variable)}
       suppressHydrationWarning
     >
-      <body className={`antialiased`}>{children}</body>
+      <body className="antialiased">
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 }
